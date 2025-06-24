@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+	html {
+		font-family: 'Quicksand', sans-serif;
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		margin: 0;
+		font-family: 'Quicksand', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		overflow-x: hidden;
+	}
+}
+
+@layer components {
+	.magical-text {
+		@apply bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink bg-clip-text text-transparent;
+	}
+	
+	.moana-section {
+		@apply bg-gradient-to-br from-moana-blue via-moana-turquoise to-moana-ocean;
+	}
+	
+	.aladdin-section {
+		@apply bg-gradient-to-br from-aladdin-purple via-aladdin-gold to-aladdin-pink;
+	}
+	
+	.magical-card {
+		@apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl;
+	}
+	
+	.neon-button {
+		@apply bg-gradient-to-r from-neon-purple to-neon-turquoise text-white font-bold py-3 px-8 rounded-full 
+			   shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 
+			   hover:from-neon-turquoise hover:to-neon-pink;
+	}
+	
+	.sparkle-effect {
+		@apply absolute w-2 h-2 bg-neon-gold rounded-full animate-sparkle;
+	}
+	
+	.floating-element {
+		@apply animate-float;
+	}
+	
+	.glow-effect {
+		@apply animate-glow;
+	}
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(168, 85, 247, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(45deg, #A855F7, #00D4FF);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(45deg, #00D4FF, #FF6B9D);
+}
