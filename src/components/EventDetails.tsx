@@ -57,7 +57,7 @@ const EventDetails: React.FC = () => {
 
 				{/* Flip Card */}
 				<div className="flex justify-center items-center">
-					<div className="[perspective:1200px] w-full max-w-2xl">
+					<div className="w-full max-w-[95vw] sm:max-w-2xl">
 						<motion.div
 							className={`relative w-full h-[32rem] md:h-[36rem] cursor-pointer`}
 							style={{ transformStyle: 'preserve-3d' }}
@@ -73,24 +73,24 @@ const EventDetails: React.FC = () => {
 								<span className="inline-block px-8 py-3 rounded-full bg-white/20 text-2xl font-bold magical-text shadow-lg animate-pulse">Magical Celebration Awaits</span>
 							</div>
 							{/* Back Side */}
-							<div className={`absolute inset-0 flex flex-col items-center justify-center rounded-3xl shadow-2xl bg-white text-center transition-all duration-500 px-4 md:px-12 py-8 md:py-12 ${flipped ? '' : 'rotate-y-180 pointer-events-none'}`} style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-								<h3 className="text-3xl md:text-4xl font-extrabold mb-6 bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink bg-clip-text text-transparent">Magical Birthday Bash</h3>
-								<div className="flex flex-col gap-6 items-center w-full">
-									<div className="flex items-center gap-4 justify-center">
-										<Calendar className="w-8 h-8 text-neon-turquoise" />
-										<span className="text-2xl md:text-3xl font-bold text-gray-800">{eventData.date}</span>
+							<div className={`absolute inset-0 flex flex-col items-center justify-center rounded-3xl shadow-2xl bg-white text-center transition-all duration-500 px-2 xs:px-4 md:px-12 py-6 md:py-12 ${flipped ? '' : 'rotate-y-180 pointer-events-none'}`} style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+								<h3 className="text-2xl xs:text-3xl md:text-4xl font-extrabold mb-6 bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink bg-clip-text text-transparent break-words">Magical Birthday Bash</h3>
+								<div className="flex flex-col gap-4 xs:gap-6 items-center w-full">
+									<div className="flex items-center gap-2 xs:gap-4 justify-center">
+										<Calendar className="w-7 h-7 xs:w-8 xs:h-8 text-neon-turquoise" />
+										<span className="text-lg xs:text-2xl md:text-3xl font-bold text-gray-800 break-words">{eventData.date}</span>
 									</div>
-									<div className="flex items-center gap-4 justify-center">
-										<Clock className="w-8 h-8 text-aladdin-orange" />
-										<span className="text-2xl md:text-3xl font-bold text-gray-800">{eventData.time}</span>
+									<div className="flex items-center gap-2 xs:gap-4 justify-center">
+										<Clock className="w-7 h-7 xs:w-8 xs:h-8 text-aladdin-orange" />
+										<span className="text-lg xs:text-2xl md:text-3xl font-bold text-gray-800 break-words">{eventData.time}</span>
 									</div>
-									<div className="flex items-center gap-4 justify-center">
-										<MapPin className="w-8 h-8 text-neon-pink" />
-										<span className="text-2xl md:text-3xl font-bold text-gray-800">{eventData.venue}</span>
+									<div className="flex items-center gap-2 xs:gap-4 justify-center">
+										<MapPin className="w-7 h-7 xs:w-8 xs:h-8 text-neon-pink" />
+										<span className="text-lg xs:text-2xl md:text-3xl font-bold text-gray-800 break-words">{eventData.venue}</span>
 									</div>
 								</div>
-								<a href={eventData.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block px-10 py-4 rounded-full bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink text-white text-xl font-bold shadow-lg hover:scale-105 transition-transform">View on Google Maps</a>
-								<p className="mt-8 text-lg md:text-2xl text-gray-700 font-semibold leading-relaxed max-w-xl mx-auto">
+								<a href={eventData.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-6 xs:mt-8 inline-block px-6 xs:px-10 py-3 xs:py-4 rounded-full bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink text-white text-base xs:text-xl font-bold shadow-lg hover:scale-105 transition-transform">View on Google Maps</a>
+								<p className="mt-6 xs:mt-8 text-base xs:text-lg md:text-2xl text-gray-700 font-semibold leading-relaxed max-w-xs xs:max-w-xl mx-auto break-words">
 									Step into a world of wonder as we celebrate a magical milestone! Dress in your brightest smiles and join us for an evening of joy, laughter, and unforgettable memories.
 								</p>
 							</div>
