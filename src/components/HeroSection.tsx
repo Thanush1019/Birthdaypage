@@ -192,7 +192,7 @@ const HeroSection: React.FC = () => {
 					transition={{ delay: 0.5, duration: 1 }}
 					className="space-y-6"
 				>
-					<h1 className="text-4xl md:text-6xl font-bold magical-text drop-shadow-[0_0_16px_#fff]">
+					<h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink bg-clip-text text-transparent outline-none drop-shadow-[0_2px_8px_#1e293b] md:drop-shadow-[0_4px_16px_#1e293b]" style={{opacity: 1}}>
 						You're Invited to a
 					</h1>
 					<h2 className="text-5xl md:text-7xl font-bold text-white drop-shadow-2xl">

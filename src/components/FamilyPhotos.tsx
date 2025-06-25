@@ -103,7 +103,7 @@ const FamilyPhotos: React.FC = () => {
 					viewport={{ once: true }}
 					className="text-center mb-16"
 				>
-					<h2 className="text-4xl md:text-6xl font-bold magical-text mb-4">
+					<h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink bg-clip-text text-transparent outline-none drop-shadow-[0_2px_8px_#1e293b] md:drop-shadow-[0_4px_16px_#1e293b] mb-4" style={{opacity: 1}}>
 						With Love, From Our Family to Yours
 					</h2>
 					<p className="text-xl text-white/80">

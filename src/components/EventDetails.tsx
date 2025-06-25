@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Clock, MapPin, Calendar, Star } from 'lucide-react'
+import { Clock, MapPin, Calendar, Star, PartyPopper } from 'lucide-react'
 
 const EventDetails: React.FC = () => {
+	const [flipped, setFlipped] = useState(false)
 	const eventData = {
 		date: '28th June 2025, Saturday',
 		time: '7:30 PM',
 		venue: 'Taj Falaknuma Palace, Hyderabad',
-		rsvpLink: '#rsvp'
+		mapsUrl: 'https://www.google.com/maps/place/TAJ+FALAKNUMA+PALACE,+Fatima+Nagar,+Falaknuma,+Hyderabad,+Telangana+500053/@17.3318612,78.4607834,1091m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bcbbd57b948e937:0xc83cd648a9a012d0!8m2!3d17.3314746!4d78.4659588!16s%2Fg%2F11rf7cgv15!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDYyMi4wIKXMDSoASAFQAw%3D%3D',
 	}
 
 	return (
@@ -37,14 +38,14 @@ const EventDetails: React.FC = () => {
 				/>
 			))}
 
-			<div className="max-w-6xl mx-auto relative z-10">
+			<div className="max-w-3xl mx-auto relative z-10">
 				{/* Section Title */}
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8 }}
 					viewport={{ once: true }}
-					className="text-center mb-16"
+					className="text-center mb-12"
 				>
 					<h2 className="text-4xl md:text-6xl font-bold magical-text mb-4">
 						Event Details
@@ -54,98 +55,48 @@ const EventDetails: React.FC = () => {
 					</p>
 				</motion.div>
 
-				{/* Event Cards */}
-				<div className="grid md:grid-cols-3 gap-8 mb-12">
-					{/* Date Card */}
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
-						viewport={{ once: true }}
-						className="magical-card p-8 text-center group hover:scale-105 transition-transform duration-300 border-2 border-neon-gold shadow-lg hover:shadow-neon-gold/60"
-					>
+				{/* Flip Card */}
+				<div className="flex justify-center items-center">
+					<div className="[perspective:1200px] w-full max-w-2xl">
 						<motion.div
-							className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-moana-turquoise to-moana-ocean rounded-full flex items-center justify-center"
-							whileHover={{ rotate: 360 }}
-							transition={{ duration: 0.6 }}
+							className={`relative w-full h-[32rem] md:h-[36rem] cursor-pointer`}
+							style={{ transformStyle: 'preserve-3d' }}
+							animate={{ rotateY: flipped ? 180 : 0 }}
+							transition={{ duration: 0.8, type: 'spring' }}
+							onClick={() => setFlipped(f => !f)}
 						>
-							<Calendar className="w-8 h-8 text-white" />
+							{/* Front Side */}
+							<div className={`absolute inset-0 flex flex-col items-center justify-center rounded-3xl shadow-2xl bg-gradient-to-br from-neon-purple via-neon-turquoise to-neon-pink text-white transition-all duration-500 ${flipped ? 'rotate-y-180 pointer-events-none' : ''}`} style={{ backfaceVisibility: 'hidden' }}>
+								<PartyPopper className="w-24 h-24 md:w-32 md:h-32 mb-8 text-white drop-shadow-lg animate-bounce" />
+								<h3 className="text-4xl md:text-5xl font-extrabold tracking-wide mb-4">You're Invited!</h3>
+								<p className="text-2xl md:text-3xl font-semibold mb-6">Tap for Details</p>
+								<span className="inline-block px-8 py-3 rounded-full bg-white/20 text-2xl font-bold magical-text shadow-lg animate-pulse">Magical Celebration Awaits</span>
+							</div>
+							{/* Back Side */}
+							<div className={`absolute inset-0 flex flex-col items-center justify-center rounded-3xl shadow-2xl bg-white text-center transition-all duration-500 px-4 md:px-12 py-8 md:py-12 ${flipped ? '' : 'rotate-y-180 pointer-events-none'}`} style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+								<h3 className="text-3xl md:text-4xl font-extrabold mb-6 bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink bg-clip-text text-transparent">Magical Birthday Bash</h3>
+								<div className="flex flex-col gap-6 items-center w-full">
+									<div className="flex items-center gap-4 justify-center">
+										<Calendar className="w-8 h-8 text-neon-turquoise" />
+										<span className="text-2xl md:text-3xl font-bold text-gray-800">{eventData.date}</span>
+									</div>
+									<div className="flex items-center gap-4 justify-center">
+										<Clock className="w-8 h-8 text-aladdin-orange" />
+										<span className="text-2xl md:text-3xl font-bold text-gray-800">{eventData.time}</span>
+									</div>
+									<div className="flex items-center gap-4 justify-center">
+										<MapPin className="w-8 h-8 text-neon-pink" />
+										<span className="text-2xl md:text-3xl font-bold text-gray-800">{eventData.venue}</span>
+									</div>
+								</div>
+								<a href={eventData.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block px-10 py-4 rounded-full bg-gradient-to-r from-neon-purple via-neon-turquoise to-neon-pink text-white text-xl font-bold shadow-lg hover:scale-105 transition-transform">View on Google Maps</a>
+								<p className="mt-8 text-lg md:text-2xl text-gray-700 font-semibold leading-relaxed max-w-xl mx-auto">
+									Step into a world of wonder as we celebrate a magical milestone! Dress in your brightest smiles and join us for an evening of joy, laughter, and unforgettable memories.
+								</p>
+							</div>
 						</motion.div>
-						<h3 className="text-2xl font-bold text-white mb-2">🗓️ Date</h3>
-						<p className="text-lg text-white/80">{eventData.date}</p>
-					</motion.div>
-
-					{/* Time Card */}
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.4 }}
-						viewport={{ once: true }}
-						className="magical-card p-8 text-center group hover:scale-105 transition-transform duration-300 border-2 border-aladdin-orange shadow-lg hover:shadow-aladdin-orange/60"
-					>
-						<motion.div
-							className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-aladdin-gold to-aladdin-orange rounded-full flex items-center justify-center"
-							whileHover={{ rotate: 360 }}
-							transition={{ duration: 0.6 }}
-						>
-							<Clock className="w-8 h-8 text-white" />
-						</motion.div>
-						<h3 className="text-2xl font-bold text-white mb-2">🕢 Time</h3>
-						<p className="text-lg text-white/80">{eventData.time}</p>
-					</motion.div>
-
-					{/* Venue Card */}
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.6 }}
-						viewport={{ once: true }}
-						className="magical-card p-8 text-center group hover:scale-105 transition-transform duration-300 border-2 border-neon-pink shadow-lg hover:shadow-neon-pink/60"
-					>
-						<motion.div
-							className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-aladdin-purple to-neon-pink rounded-full flex items-center justify-center"
-							whileHover={{ rotate: 360 }}
-							transition={{ duration: 0.6 }}
-						>
-							<MapPin className="w-8 h-8 text-white" />
-						</motion.div>
-						<h3 className="text-2xl font-bold text-white mb-2">📍 Venue</h3>
-						<p className="text-lg text-white/80">{eventData.venue}</p>
-					</motion.div>
+					</div>
 				</div>
-
-				{/* RSVP Button */}
-				<motion.div
-					initial={{ opacity: 0, scale: 0.8 }}
-					whileInView={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.8, delay: 0.8 }}
-					viewport={{ once: true }}
-					className="text-center"
-				>
-					<p className="text-2xl md:text-3xl font-bold magical-text mb-2 mt-4">
-						We can't wait to celebrate this magical day with you!
-					</p>
-					<p className="text-lg text-white/80 max-w-2xl mx-auto">
-						Your presence will make our memories even more special ✨
-					</p>
-				</motion.div>
-
-				{/* Decorative Elements */}
-				<motion.div
-					className="absolute top-10 left-10 text-neon-gold"
-					animate={{ rotate: 360 }}
-					transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-				>
-					<Star size={30} />
-				</motion.div>
-				
-				<motion.div
-					className="absolute bottom-10 right-10 text-neon-turquoise"
-					animate={{ rotate: -360 }}
-					transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-				>
-					<Star size={25} />
-				</motion.div>
 			</div>
 		</section>
 	)
